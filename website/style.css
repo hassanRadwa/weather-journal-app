@@ -8,9 +8,9 @@ body{
     grid-auto-rows: minmax(auto, auto);
     /* grid-template-columns:  */
     height:auto;
-    background: #f23557;
-    color: #f0d43a;
-    justify-content: center;
+    background: #f2f3a2;
+    color: #110f01;
+    justify-content: left;
     grid-gap: 1em;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
@@ -52,12 +52,17 @@ label{
     display:block;
     font-size: 27px;
 }
+#required{
+    color: #f23557;
+    display: none;
+    font-size: 20px;
+}
 
 input{
-    display:block;
+    display:inline-block;
     height: 60px;
     width: 320px;
-    background:#22b2da;
+    background:#89afb9;
     color: #f0d43a;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
@@ -66,21 +71,22 @@ input{
 
 button{
     display: block;
-    width: 400px;
-    height: 100px;
-    background: #3b4a6b;
+    width: 100px;
+    height: 50px;
+    background: #36545c;
     color: #f0d43a;
-    font-size: 26px;
+    font-size: 18px;
     font-family: 'Oswald', sans-serif;
     border: none;
     box-shadow: 2px 4px 5px #444;
+    border-radius: 8px;
 }
 h1{
     font-size: 36px;
 }
 
 textarea{
-    background:#22b2da;
+    background:#89afb9;
     color: #f0d43a;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;

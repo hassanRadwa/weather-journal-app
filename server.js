@@ -35,6 +35,8 @@ function listening(){
 app.get('/get',getData);
 function getData(req,res){
     console.log('get request from server');
+    console.log('postData get');
+    console.log(projectData.temp);
     res.send(projectData);
 }
 
@@ -42,11 +44,19 @@ app.post('/add', postData);
 function postData (req,res){
     let data = req.body; 
 
-    projectData.temp        = data.main.temp;
-    projectData.feelings    = data.feelings;
-    projectData.date        = data.date;
+    if (data.hasOwnProperty('main')){
+        projectData.temp        = data.main.temp;
+        projectData.feelings    = data.feelings;
+        projectData.date        = data.date;
+    }
+    else{
+        projectData.temp        = '';
+        projectData.feelings    = '';
+        projectData.date        = '';
+    }
     //projectData["temp"]= data.temp;
     //console.log(projectData["temp"]);
+    console.log('postData add');
     console.log(projectData.temp);
     console.log(projectData.feelings);
     console.log(projectData.date);
