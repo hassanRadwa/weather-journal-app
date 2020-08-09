@@ -34,21 +34,22 @@ function listening(){
 // ROUTES!
 app.get('/get',getData);
 function getData(req,res){
-    console.log('get request from server');
-    console.log('postData get');
-    console.log(projectData.temp);
+    // console.log('get request from server');
+    // console.log('postData get');
+    // console.log(projectData.temp);
     res.send(projectData);
 }
 
 app.post('/add', postData);
 function postData (req,res){
     let data = req.body; 
-
+    //if the weather api return valid data
     if (data.hasOwnProperty('main')){
         projectData.temp        = data.main.temp;
         projectData.feelings    = data.feelings;
         projectData.date        = data.date;
     }
+    //if the weather api return error
     else{
         projectData.temp        = '';
         projectData.feelings    = '';
@@ -56,9 +57,9 @@ function postData (req,res){
     }
     //projectData["temp"]= data.temp;
     //console.log(projectData["temp"]);
-    console.log('postData add');
-    console.log(projectData.temp);
-    console.log(projectData.feelings);
-    console.log(projectData.date);
+    // console.log('postData add');
+    // console.log(projectData.temp);
+    // console.log(projectData.feelings);
+    // console.log(projectData.date);
     res.end();
 }

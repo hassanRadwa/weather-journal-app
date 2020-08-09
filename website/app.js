@@ -11,6 +11,7 @@ const performAction = async () => {
     console.log(zipcode);
 
     let projectData = {};
+    //if empty zipcode
     if (zipcode == ""){
         projectData.date = "";  
         projectData.temp = "";
@@ -28,25 +29,26 @@ const performAction = async () => {
         let data = {};
         //get data from weather api
         data = await getApiData(completeURL);
+        //if valid zipcode
         if (data.hasOwnProperty('main')){
             document.getElementById('required').style.display = "none";
-            console.log('data has main');
+            //console.log('data has main');
+             data.feelings = feelings;
+         
+             // Create a new date instance dynamically with JS
+             let d = new Date();
+             let month = d.getMonth() +1;//0 is january
+             let newDate = month +'.'+ d.getDate()+'.'+ d.getFullYear();
+             data.date = newDate;
+            
         }
+        //invalid zipcode
         else
         {
-            console.log('data does not has main');
-            // projectData.date = "";  
-            // projectData.temp = "";
+            //console.log('data does not has main');
             document.getElementById('required').innerHTML     = " Invalid zipcode";
             document.getElementById('required').style.display = "inline";
         }
-        data.feelings = feelings;
-    
-        // Create a new date instance dynamically with JS
-        let d = new Date();
-        let month = d.getMonth() +1;//0 is january
-        let newDate = month +'.'+ d.getDate()+'.'+ d.getFullYear();
-        data.date = newDate;
     
         //post data to server.js
         await postData('/add' , data)
@@ -70,19 +72,18 @@ const performAction = async () => {
 };
 
 
-
+//get data Async
 const getApiData = async (url = '') => {
     const res = await fetch(url);
-    // try {
+     try {
         const data = await res.json();
         console.log(data);
         console.log('in try api');
         return data;
-    // }
-    // catch(error) {
-    //     console.log('in catch api');
-    //     console.log("error", error);
-    // }
+    }
+    catch(error) {
+        console.log("error", error);
+    }
 };
 
 // Async POST
